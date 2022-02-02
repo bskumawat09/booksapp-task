@@ -41,12 +41,12 @@ class UserController {
 			});
 		}
 
-		user.isPaymentMade = true;
-		await user.save();
-
 		const referrer = await UserModel.findById(user.refferedUser);
 
-		if (referrer) {
+		if (referrer && user.isPaymentMade == false) {
+			user.isPaymentMade = true;
+			await user.save();
+
 			referrer.totalEarning += 10;
 			await referrer.save();
 		}
