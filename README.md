@@ -1,5 +1,9 @@
 # BooksApp node task
 
+# Postman collection
+
+https://www.getpostman.com/collections/aff8b37d587dd73d84db
+
 ## How to Install
 
 ### Using Git (recommended)
@@ -54,7 +58,7 @@ Database connected...
 Press CTRL+C
 ```
 
-## API Collection
+## API collection
 
 The application uses multiple Restful APIs to perform various actions. APIs working in this application are listed as follows:
 
