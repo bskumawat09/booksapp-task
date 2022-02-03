@@ -1,27 +1,7 @@
 const UserModel = require("../models/user-model");
 
 class UserController {
-	async getUser(req, res) {
-		const { id } = req.params;
-		const user = await UserModel.findById(id);
-
-		res.json({
-			status: "success",
-			user,
-		});
-	}
-
-	async createUser(req, res) {
-		const data = req.body;
-
-		const user = await UserModel.create(data);
-
-		res.json({
-			status: "success",
-			user,
-		});
-	}
-
+	// reward the referrer for the first payment made
 	async rewardReferrer(req, res) {
 		const { uid } = req.body;
 
@@ -56,6 +36,50 @@ class UserController {
 			user,
 			referrer,
 		});
+	}
+
+	async getAllUsers(req, res) {
+		const users = await UserModel.find();
+
+		res.json({
+			status: "success",
+			results: users.length,
+			users,
+		});
+	}
+
+	async getUser(req, res) {
+		const { id } = req.params;
+		const user = await UserModel.findById(id);
+
+		if (!user) {
+			return res.status(400).json({
+				status: "error",
+				message: "user not found",
+			});
+		}
+
+		res.json({
+			status: "success",
+			user,
+		});
+	}
+
+	async createUser(req, res) {
+		try {
+			const data = req.body;
+			const user = await UserModel.create(data);
+
+			res.json({
+				status: "success",
+				user,
+			});
+		} catch (err) {
+			res.status(500).json({
+				status: "error",
+				message: err.message,
+			});
+		}
 	}
 }
 
