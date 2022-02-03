@@ -6,7 +6,7 @@ class UserController {
 		const { uid } = req.body;
 
 		if (!uid) {
-			return res.json({
+			return res.status(400).json({
 				status: "error",
 				message: "user id is required",
 			});
@@ -15,7 +15,7 @@ class UserController {
 		const user = await UserModel.findById(uid);
 
 		if (!user) {
-			return res.json({
+			return res.status(404).json({
 				status: "error",
 				message: "user not found",
 			});
@@ -53,7 +53,7 @@ class UserController {
 		const user = await UserModel.findById(id);
 
 		if (!user) {
-			return res.status(400).json({
+			return res.status(404).json({
 				status: "error",
 				message: "user not found",
 			});

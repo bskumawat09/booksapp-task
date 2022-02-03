@@ -12,7 +12,7 @@ dbConnect();
 app.use("/users", userRoutes);
 
 app.get("/", (req, res) => {
-	res.status(400).json({
+	res.json({
 		status: "success",
 		message: "Welcome to the node.js task",
 	});
