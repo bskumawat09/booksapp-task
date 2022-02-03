@@ -1,5 +1,7 @@
 # BooksApp node task
 
+Create a Module, which rewards Users Referrer whenever a payment has been made. Let's say userB has reffered userA. When userA makes payment, then userB will get rewarded for one times.
+
 # Postman collection
 
 https://www.getpostman.com/collections/aff8b37d587dd73d84db
